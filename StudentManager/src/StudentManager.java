@@ -59,7 +59,7 @@ public class StudentManager {
             return;
         }
 
-        System.out.println("请输入要查询的学生xingming：");
+        System.out.println("请输入要查询的学生姓名：");
         Name = scanner.nextLine();
 
         for (int i = 0; i < array.size(); i ++) {
@@ -201,9 +201,5 @@ public class StudentManager {
             Student s = array.get(i);
             System.out.println(s.getID() + "\t" + s.getName() + "\t" + s.getBirDate() + "\t" + s.getGender());
         }
-    }
-    //主方法调用App方法
-    public static void main(String[] args) {
-        App();
     }
 }
