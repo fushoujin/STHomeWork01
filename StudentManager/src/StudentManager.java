@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Scanner;
-import java.util.Collections;
 
 public class StudentManager {
     //主要的App方法
@@ -62,15 +61,13 @@ public class StudentManager {
         System.out.println("请输入要查询的学生姓名：");
         Name = scanner.nextLine();
 
-        for (int i = 0; i < array.size(); i ++) {
-            Student s = array.get(i);
-
+        for (Student s : array) {
             if (Name.equals(s.getName())) {
                 System.out.println("学号\t\t\t姓名\t\t生日\t\t\t性别");
                 System.out.println(s.getID() + "\t" + s.getName() + "\t" + s.getBirDate() + "\t" + s.getGender());
                 flag = true;
             }
-            if(!flag) {
+            if (!flag) {
                 System.out.println("无效的姓名，请重新操作。");
             }
         }
@@ -85,9 +82,7 @@ public class StudentManager {
             Name = scanner.nextLine();
             boolean flag = false;
 
-            for(int i = 0; i < array.size(); i ++) {
-                Student student = array.get(i);
-
+            for (Student student : array) {
                 if (student.getName().equals(Name)) {
                     flag = true;
                     break;
@@ -111,7 +106,7 @@ public class StudentManager {
 
         Scanner sc3 = new Scanner(System.in);
         System.out.println("请输入学生性别：");
-        boolean Gender = scanner.nextBoolean();
+        boolean Gender = sc3.nextBoolean();
 
         Student student = new Student();
         student.setID(id);
@@ -184,21 +179,20 @@ public class StudentManager {
     }
     //输出学生方法
     public static void outputStudent(ArrayList<Student> array) {
-        if(array.isEmpty()) {
+        if (array.isEmpty()) {
             System.out.println("无可供查询的学生,请重新操作。");
             return;
         }
 
-        Collections.sort(array, new Comparator<Student>() {
+        array.sort(new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
-                return o1.getID()-o2.getID();
+                return o1.getID() - o2.getID();
             }
         });
 
         System.out.println("学号\t\t\t姓名\t\t生日\t\t\t性别");
-        for (int i = 0; i < array.size(); i ++) {
-            Student s = array.get(i);
+        for (Student s : array) {
             System.out.println(s.getID() + "\t" + s.getName() + "\t" + s.getBirDate() + "\t" + s.getGender());
         }
     }
